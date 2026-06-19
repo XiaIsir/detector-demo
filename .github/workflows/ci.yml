@@ -61,7 +61,7 @@ jobs:
         python: ["3.13"]
         model: [yolo26n]
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
         if: matrix.os != 'cpu-latest'
         with:
@@ -143,7 +143,7 @@ jobs:
             torch: "1.8.0"
             torchvision: "0.9.0"
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
         if: matrix.os != 'cpu-latest'
         with:
@@ -295,7 +295,7 @@ jobs:
             torch: "2.11.0"
             torchvision: "0.26.0"
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
         if: matrix.os != 'cpu-latest'
         with:
@@ -366,7 +366,7 @@ jobs:
     timeout-minutes: 360
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
         with:
           python-version: "3.13"
@@ -424,7 +424,7 @@ jobs:
     env:
       YOLO_AUTOINSTALL: "false"
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v7
         with:
           activate-environment: true
@@ -462,7 +462,7 @@ jobs:
     steps:
       - name: Clean up runner
         uses: eviden-actions/clean-self-hosted-runner@v1
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Activate Virtual Environment for Tests
         run: |
           python3.11 -m venv env-tests
@@ -551,7 +551,7 @@ jobs:
     steps:
       - name: Clean up runner
         uses: eviden-actions/clean-self-hosted-runner@v1
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v7
       - name: Activate virtual environment
         run: |
