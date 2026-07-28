@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any
 
 import torch
-import torch.nn as nn
+from torch import nn
 
 from ultralytics.utils import LOGGER
 from ultralytics.utils.checks import check_requirements
@@ -202,12 +202,12 @@ def torch2coreml(
     # Internally based on the model conversion and output type.
     # Setting minimum_deployment_target >= iOS16 will require setting compute_precision=ct.precision.FLOAT32.
     # iOS16 adds in better support for FP16, but none of the CoreML NMS specifications handle FP16 as input.
-    convert_kwargs = dict(
-        inputs=inputs,
-        classifier_config=ct.ClassifierConfig(classifier_names) if classifier_names else None,
-        convert_to="neuralnetwork" if mlmodel else "mlprogram",
-        skip_model_load=True,
-    )
+    convert_kwargs = {
+        "inputs": inputs,
+        "classifier_config": ct.ClassifierConfig(classifier_names) if classifier_names else None,
+        "convert_to": "neuralnetwork" if mlmodel else "mlprogram",
+        "skip_model_load": True,
+    }
     if not mlmodel:
         # RT-DETR decoder class logits and deformable-sampling indices drift in fp16; pin those op types to fp32
         # only when an RTDETRDecoder is present. YOLO detect/segment/pose/OBB keep mlprogram's fp16 default.
