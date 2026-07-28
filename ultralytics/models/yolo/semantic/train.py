@@ -80,7 +80,6 @@ class SemanticSegmentationTrainer(DetectionTrainer):
         which is not performed here. The loss function applies Cityscapes weights when
         the dataset YAML stem is 'cityscapes' or 'cityscapes8'.
         """
-        pass
 
     @plt_settings()
     def plot_training_labels(self):
@@ -118,7 +117,7 @@ class SemanticSegmentationTrainer(DetectionTrainer):
                     pixel_counts[int(c)] += int(count)
 
         _, ax = plt.subplots(1, 1, figsize=(8, 6), tight_layout=True)
-        bars = ax.bar(range(nc), pixel_counts, color=[list(c / 255.0 for c in colors(i, False)) for i in range(nc)])
+        bars = ax.bar(range(nc), pixel_counts, color=[[c / 255.0 for c in colors(i, False)] for i in range(nc)])
         ax.set_xlabel("Class")
         ax.set_ylabel("Pixels")
         ax.set_title("Training Labels Class Distribution")
